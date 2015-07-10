@@ -75,21 +75,26 @@ define([
     });
   };
 
-  Search.prototype.handleSearch = function (evt) {
-    if (!this._keyUpPrevented) {
-      var input = this.$search.val();
+    Search.prototype.beforeHandleSearch = function (evt) {
+        console.log(this.$search);
+    };
 
-      this.trigger('query', {
-        term: input
-      });
-    }
+    Search.prototype.handleSearch = function (evt) {
+        this.beforeHandleSearch(evt);
+        if (!this._keyUpPrevented) {
+            var input = this.$search.val();
 
-    this._keyUpPrevented = false;
-  };
+            this.trigger('query', {
+                term: input
+            });
+        }
 
-  Search.prototype.showSearch = function (_, params) {
-    return true;
-  };
+        this._keyUpPrevented = false;
+    };
 
-  return Search;
+    Search.prototype.showSearch = function (_, params) {
+        return true;
+    };
+
+    return Search;
 });

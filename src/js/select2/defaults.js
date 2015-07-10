@@ -16,7 +16,8 @@ define([
   './diacritics',
 
   './data/select',
-  './data/array',
+    './data/array',
+    './data/hint',
   './data/ajax',
   './data/tags',
   './data/tokenizer',
@@ -43,7 +44,7 @@ define([
 
              Utils, Translation, DIACRITICS,
 
-             SelectData, ArrayData, AjaxData, Tags, Tokenizer,
+             SelectData, ArrayData, HintData, AjaxData, Tags, Tokenizer,
              MinimumInputLength, MaximumInputLength, MaximumSelectionLength,
 
              Dropdown, DropdownSearch, HidePlaceholder, InfiniteScroll,
@@ -61,7 +62,9 @@ define([
       if (options.ajax != null) {
         options.dataAdapter = AjaxData;
       } else if (options.data != null) {
-        options.dataAdapter = ArrayData;
+          options.dataAdapter = ArrayData;
+      } else if (options.hint != null) {
+          options.dataAdapter = HintData;
       } else {
         options.dataAdapter = SelectData;
       }
