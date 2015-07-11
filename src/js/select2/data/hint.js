@@ -110,16 +110,16 @@ define([
                     m.text = Utils.capitalize(m.id) + ': ' + params.term;
                 });
             }
-            data.push(option);
+            var matches = self.matches(params, option);
+
+            if (matches != null) {
+                data.push(matches);
+            }
         });
 
         callback({
             results: data
         });
-    };
-
-    HintAdapter.prototype.matches = function (params, data) {
-        return data;
     };
 
     return HintAdapter;
