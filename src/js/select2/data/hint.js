@@ -14,9 +14,12 @@ define([
 
         data.selected = true;
 
+        var $elem = $(data.element);
+
         // If data.element is a DOM node, use it instead
-        if ($(data.element).is('option')) {
+        if ($elem.is('option')) {
             data.element.selected = true;
+            $elem.data('hidden', true);
 
             this.$element.trigger('change');
 
@@ -58,8 +61,11 @@ define([
 
         data.selected = false;
 
-        if ($(data.element).is('option')) {
+        var $elem = $(data.element);
+
+        if ($elem.is('option')) {
             data.element.selected = false;
+            $elem.data('hidden', false);
 
             this.$element.trigger('change');
 
@@ -93,6 +99,8 @@ define([
             var $option = $(this);
 
             if (!$option.is('option') && !$option.is('optgroup')) {
+                return;
+            } else if ($option.data('hidden')) {
                 return;
             }
 
